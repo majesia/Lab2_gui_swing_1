@@ -18,6 +18,7 @@ public class Window extends JFrame implements ActionListener {
     JTextField tfLogin;
     JLabel lLogin,lPassword;
     JPasswordField pfPassword;
+    int wrongPassword=0;
     public Window(){
         setSize(500,250);
         setTitle("Logowanie");
@@ -29,6 +30,7 @@ public class Window extends JFrame implements ActionListener {
         bLogin.setBounds(100,150,100,40);
         bLogin.setFont(new Font("Dialog",Font.HANGING_BASELINE,20));
         bLogin.setBackground(new Color(20,40,40));
+        bLogin.setForeground(new Color(150,150,150));
         add(bLogin);
         bLogin.addActionListener(this);
 
@@ -37,6 +39,7 @@ public class Window extends JFrame implements ActionListener {
         bCancel.setBounds(300,150,100,40);
         bCancel.setFont(new Font("Dialog",Font.HANGING_BASELINE,20));
         bCancel.setBackground(new Color(20,40,40));
+        bCancel.setForeground(new Color(150,150,150));
 
         add(bCancel);
         bCancel.addActionListener(this);
@@ -44,6 +47,7 @@ public class Window extends JFrame implements ActionListener {
         //login
         lLogin= new JLabel("Login:");
         lLogin.setBounds(100,70,70,20);
+        lLogin.setFont(new Font("Dialog",Font.HANGING_BASELINE,15));
         add(lLogin);
         //bLogin.addActionListener(this);
 
@@ -55,6 +59,7 @@ public class Window extends JFrame implements ActionListener {
         //haslo
         lPassword= new JLabel("Password:");
         lPassword.setBounds(100,100,70,20);
+        lPassword.setFont(new Font("Dialog",Font.HANGING_BASELINE,15));
         add(lPassword);
 
         pfPassword = new JPasswordField();
@@ -74,7 +79,8 @@ public class Window extends JFrame implements ActionListener {
         users.add(user2);
     }
 
-    static void changeColor(Color color){
+    void check(int number){
+        if(number==3) dispose();
 
     }
 
@@ -104,7 +110,14 @@ public class Window extends JFrame implements ActionListener {
                 if(Objects.equals(login, user.login)) {
                     usersWithTheSameLogin.add(user);
                 }
+                if(usersWithTheSameLogin.isEmpty()) {
+                    getContentPane().setBackground(new Color(200,40,50));
+                    wrongPassword++;
+                    check(wrongPassword);
+
+                }
             }
+
 
 
             for (User user:usersWithTheSameLogin) {
@@ -113,6 +126,9 @@ public class Window extends JFrame implements ActionListener {
 
                 if (user.password.length != passoword.length) {
                     System.out.println("niezgodna dlugosc hasel");
+                    getContentPane().setBackground(new Color(200,40,50));
+                    wrongPassword++;
+                    check(wrongPassword);
                     break;
                 }
                 for (char znak : passoword) {
@@ -137,6 +153,8 @@ public class Window extends JFrame implements ActionListener {
                     else {
                         System.out.println("haslo niepoprawne");
                         getContentPane().setBackground(new Color(200,40,50));
+                        wrongPassword++;
+                        check(wrongPassword);
 
                         isPasswordCorrect = false;
                         break;
@@ -147,7 +165,10 @@ public class Window extends JFrame implements ActionListener {
             }
 
         if (source==bCancel){
-            dispose();
+            tfLogin.setText(null);
+            pfPassword.setText(null);
+            getContentPane().setBackground(new Color(160,100,100));
+
         }
         }
     }
