@@ -46,24 +46,24 @@ public class Window extends JFrame implements ActionListener {
 
         //login
         lLogin= new JLabel("Login:");
-        lLogin.setBounds(100,70,70,20);
+        lLogin.setBounds(100,70,110,20);
         lLogin.setFont(new Font("Dialog",Font.HANGING_BASELINE,15));
         add(lLogin);
         //bLogin.addActionListener(this);
 
         tfLogin = new JTextField();
-        tfLogin.setBounds(180,70,220,20);
+        tfLogin.setBounds(200,70,200,20);
         add(tfLogin);
         tfLogin.addActionListener(this);
 
         //haslo
         lPassword= new JLabel("Password:");
-        lPassword.setBounds(100,100,70,20);
+        lPassword.setBounds(100,100,110,20);
         lPassword.setFont(new Font("Dialog",Font.HANGING_BASELINE,15));
         add(lPassword);
 
         pfPassword = new JPasswordField();
-        pfPassword.setBounds(180,100,220,20);
+        pfPassword.setBounds(200,100,200,20);
         add(pfPassword);
         pfPassword.addActionListener(this);
 
@@ -98,11 +98,11 @@ public class Window extends JFrame implements ActionListener {
 
         if(source==tfLogin) {
             login=tfLogin.getText();
-            System.out.println(login);
+            //System.out.println(login);
         }
         if (source==pfPassword) {
             passoword= pfPassword.getPassword();
-            System.out.println(passoword);
+            //System.out.println(passoword);
         }
 
         if(source==bLogin){
@@ -125,7 +125,7 @@ public class Window extends JFrame implements ActionListener {
                 int loops = 0;
 
                 if (user.password.length != passoword.length) {
-                    System.out.println("niezgodna dlugosc hasel");
+                    //System.out.println("niezgodna dlugosc hasel");
                     getContentPane().setBackground(new Color(200,40,50));
                     wrongPassword++;
                     check(wrongPassword);
@@ -140,7 +140,7 @@ public class Window extends JFrame implements ActionListener {
                         isPasswordCorrect = false;
                         break;
                     }
-                    System.out.println(isPasswordCorrect);
+                    //System.out.println(isPasswordCorrect);
                     loops += 1;
                 }
                 System.out.println(isPasswordCorrect);
@@ -148,10 +148,10 @@ public class Window extends JFrame implements ActionListener {
                     if (user.password.length == passoword.length) {
                         getContentPane().setBackground(new Color(10,150,80));
                         isUserFound = true;
-                        System.out.println("poprawne haslo");
+                        //System.out.println("poprawne haslo");
                     }
                     else {
-                        System.out.println("haslo niepoprawne");
+                        //System.out.println("haslo niepoprawne");
                         getContentPane().setBackground(new Color(200,40,50));
                         wrongPassword++;
                         check(wrongPassword);
